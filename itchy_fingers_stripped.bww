@@ -1,0 +1,39 @@
+I!'' gg Cr_8 Dl_8
+!	dbe E_4				strla  Er_8 Fl_8	gg Er_8 LAl_8  Cl_8 El_8	
+!	Fr_8 gg LAl_8  Dl_8 Fl_8	dbe E_4			gg Cr_8 Dl_8
+!	dbe E_4				strla Er_8 Fl_8		gg Er_8 LAl_8 Cl_8 El_8
+!	gg Cr_8 dg LAl_8 gg Dl_8 Cl_8	gstb  B_4	gg Cr_8 Dl_8 	!t 
+
+& 
+	dbe E_4				strla Er_8 Fl_8		gg Er_8 LAl_8 Cl_8 El_8	
+!	Fr_8 gg LAl_8  Dl_8 Fl_8	dbe E_4			gg Cr_8 El_8
+!	gg Dr_8 Cl_8 gg Cl_8 Bl_8				strlg Br_8 Fl_8 gg El_8 Bl_8 
+!	dbc C_4			eg LA_4		brl LA_4	''!I
+
+& 
+I! 	gg Cr_8 El_8
+!	dbha HA_4			LAr_8  HAl_8	Cr_8  HAl_8 El_8  HAl_8
+!	Fr_8  HAl_8 Dl_8  HAl_8	hdbe E_4			gg Cr_8 El_8
+!	dbha HA_4			LAr_8  HAl_8	Cr_8  HAl_8 El_8  HAl_8
+!	Cr_8 dg LAl_8 gg Dl_8 Cl_8	gstb B_4		gg Cr_8 El_8	 
+!t 
+& 
+	dbha HA_4			LAr_8  HAl_8	Cr_8  HAl_8 El_8  HAl_8
+!	Fr_8  HAl_8 Dl_8  HAl_8	hdbe E_4			gg Cr_8 El_8
+!	gg Dr_8 Cl_8 gg Cl_8 Bl_8				strlg Br_8 Fl_8 gg El_8 Bl_8 
+!	dbc C_4			eg LA_4		brl LA_4	gg Cr_8 El_8	!I
+
+
+
+& 
+I! 	 dbha HA_4			LAr_8  HAl_8	Cr_8  HAl_8 El_8  HAl_8
+!	Fr_8  HAl_8 Dl_8  HAl_8	hdbe E_4			gg Cr_8 El_8
+!	dbha HA_4			LAr_8  HAl_8	Cr_8  HAl_8 El_8  HAl_8
+!	Cr_8 dg LAl_8 gg Dl_8 Cl_8	gstb B_4		gg Cr_8 Dl_8	!t 
+
+& 
+	dbe E_4				strla  Er_8 Fl_8		gg Er_8 LAl_8  Cl_8 El_8
+!	gg Dr_8 strlg Dl_8 HAl_8 Fl_8	dbe E_4			gg Cr_8 El_8
+!	gg Dr_8 Cl_8 gg Cl_8 Bl_8				strlg Br_8 Fl_8 gg El_8 Bl_8 
+!	dbc C_4			eg LA_4		brl LA_4	 
+!I
