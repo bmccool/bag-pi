@@ -1,6 +1,7 @@
 import pygame
 import pygame.midi
 from time import sleep
+from embellishment import Embellishment
 
 # Parameters that you can change
 instrument = 109 
@@ -47,6 +48,7 @@ def play_note(note, duration=1.000, embelishment=None):
     played = 0
     if embelishment is not None: played = embelishment()
     midiOutput.note_on(note, velocity)
+    print "played: " + str(note)
     sleep(duration - played)
     midiOutput.note_off(note, velocity)
 
@@ -70,9 +72,12 @@ def g_dThrow(note_length=emb_length):
     play_note(nc, note_length)
     return note_length * 3
 
+"""
 def g_g(note_length=emb_length):
     play_note(nG, note_length)
     return note_length
+"""
+
 
 def g_gef(note_length=emb_length):
     play_note(nG, note_length)
@@ -105,58 +110,59 @@ def g_e(note_length=emb_length):
     return note_length
 
 def song_itchy_fingers(eigth=.300):
+    g_g = Embellishment([nG], False)
     quarter = eigth * 2
-    play_note(nc, eigth, g_g)
+    play_note(nc, eigth, g_g.play(play_note, emb_length))
     play_note(nd, eigth)
     play_note(ne, quarter, g_gef)
     play_note(ne, eigth, g_a)
     play_note(nf, eigth)
-    play_note(ne, eigth, g_g)
+    play_note(ne, eigth, g_g.play(play_note, emb_length))
     play_note(na, eigth)
     play_note(nc, eigth)
     play_note(ne, eigth)
-    play_note(nf, eigth, g_g)
+    play_note(nf, eigth, g_g.play(play_note, emb_length))
     play_note(na, eigth)
     play_note(nd, eigth)
     play_note(nf, eigth)
     play_note(ne, quarter, g_gef)
-    play_note(nc, eigth, g_g)
+    play_note(nc, eigth, g_g.play(play_note, emb_length))
     play_note(nd, eigth)
     play_note(ne, quarter, g_gef)
     play_note(ne, eigth, g_a)
     play_note(nf, eigth)
-    play_note(ne, eigth, g_g)
+    play_note(ne, eigth, g_g.play(play_note, emb_length))
     play_note(na, eigth)
     play_note(nc, eigth)
     play_note(ne, eigth)
-    play_note(nc, eigth, g_g)
+    play_note(nc, eigth, g_g.play(play_note, emb_length))
     play_note(na, eigth, g_d)
-    play_note(nd, eigth, g_g)
+    play_note(nd, eigth, g_g.play(play_note, emb_length))
     play_note(nc, eigth)
     play_note(nb, quarter, g_gbd)
-    play_note(nc, eigth, g_g)
+    play_note(nc, eigth, g_g.play(play_note, emb_length))
     play_note(nd, eigth)
     play_note(ne, quarter, g_gef)
     play_note(ne, eigth, g_a)
     play_note(nf, eigth)
-    play_note(ne, eigth, g_g)
+    play_note(ne, eigth, g_g.play(play_note, emb_length))
     play_note(na, eigth)
     play_note(nc, eigth)
     play_note(ne, eigth)
-    play_note(nf, eigth, g_g)
+    play_note(nf, eigth, g_g.play(play_note, emb_length))
     play_note(na, eigth)
     play_note(nd, eigth)
     play_note(nf, eigth)
     play_note(ne, quarter, g_gef)
-    play_note(nc, eigth, g_g)
+    play_note(nc, eigth, g_g.play(play_note, emb_length))
     play_note(ne, eigth)
-    play_note(nd, eigth, g_g)
+    play_note(nd, eigth, g_g.play(play_note, emb_length))
     play_note(nc, eigth)
-    play_note(nc, eigth, g_g)
+    play_note(nc, eigth, g_g.play(play_note, emb_length))
     play_note(nb, eigth)
-    play_note(nb, eigth, g_g)
+    play_note(nb, eigth, g_g.play(play_note, emb_length))
     play_note(nf, eigth)
-    play_note(ne, eigth, g_g)
+    play_note(ne, eigth, g_g.play(play_note, emb_length))
     play_note(nb, eigth)
     play_note(nc, quarter, g_gcd)
     play_note(na, quarter, g_e)
