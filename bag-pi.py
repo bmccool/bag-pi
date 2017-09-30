@@ -1,7 +1,7 @@
 import pygame
 import pygame.midi
 from time import sleep
-from embellishment import Embellishment
+from embellishment import * 
 
 # Parameters that you can change
 instrument = 109 
@@ -44,125 +44,93 @@ notes = [ng, na, nb, nc, nd, ne, nf, nG, nA]
 velocity = 127
 
 
-def play_note(note, duration=1.000, embelishment=None):
-    played = 0
+def play_note(note, duration=1.000, embellishment=None):
+    """played = 0
     if embelishment is not None: played = embelishment()
     midiOutput.note_on(note, velocity)
-    print "played: " + str(note)
+    print "playing note: " + str(note)
     sleep(duration - played)
     midiOutput.note_off(note, velocity)
-
-def g_grip(note_length=emb_length):
-    play_note(ng, note_length)
-    play_note(nd, note_length)
-    play_note(ng, note_length)
-    return note_length * 3
-
-def g_birl(note_length=emb_length):
-    play_note(nG, note_length)
-    play_note(na, note_length)
-    play_note(ng, note_length)
-    play_note(na, note_length)
-    play_note(ng, note_length)
-    return note_length * 5
-
-def g_dThrow(note_length=emb_length):
-    play_note(ng, note_length)
-    play_note(nd, note_length)
-    play_note(nc, note_length)
-    return note_length * 3
-
-"""
-def g_g(note_length=emb_length):
-    play_note(nG, note_length)
-    return note_length
-"""
-
-
-def g_gef(note_length=emb_length):
-    play_note(nG, note_length)
-    play_note(ne, note_length)
-    play_note(nf, note_length)
-    return note_length * 3
-
-def g_a(note_length=emb_length):
-    play_note(na, note_length)
-    return note_length
-
-def g_d(note_length=emb_length):
-    play_note(nd, note_length)
-    return note_length
-
-def g_gbd(note_length=emb_length):
-    play_note(nG, note_length)
-    play_note(nb, note_length)
-    play_note(nd, note_length)
-    return note_length * 3
-
-def g_gcd(note_length=emb_length):
-    play_note(nG, note_length)
-    play_note(nc, note_length)
-    play_note(nd, note_length)
-    return note_length * 3
-
-def g_e(note_length=emb_length):
-    play_note(ne, note_length)
-    return note_length
+    """
+    played = 0
+    if embellishment is not None: #Play embellishment...
+        for note in embellishment.notes:
+            midiOutput.note_on(note, velocity)
+            print "playing note: " + str(note)
+            sleep(emb_length)
+            midiOutput.note_off(note, velocity)
+        played = embellishment.length(emb_length)
+    midiOutput.note_on(note, velocity)
+    print "playing note: " + str(note)
+    sleep(duration - played)
+    midiOutput.note_off(note, velocity) 
 
 def song_itchy_fingers(eigth=.300):
     g_g = Embellishment([nG], False)
+    g_a = Embellishment([na], False)
+    g_d = Embellishment([nd], False)
+    g_e = Embellishment([ne], False)
+    g_gef = Embellishment([nG, ne, nf], False)    
+    g_gbd = Embellishment([nG, nb, nd], False)
+    g_gcd = Embellishment([nG, nc, nd], False)
+    g_dThrow = Embellishment([ng, nd, nc], False)
+    g_birl = Embellishment([nG, na, ng, na, ng], False)
+    g_grip = Embellishment([ng, nd, ng], False)
+    
+
+
     quarter = eigth * 2
-    play_note(nc, eigth, g_g.play(play_note, emb_length))
+    play_note(nc, eigth, g_g)
     play_note(nd, eigth)
     play_note(ne, quarter, g_gef)
     play_note(ne, eigth, g_a)
     play_note(nf, eigth)
-    play_note(ne, eigth, g_g.play(play_note, emb_length))
+    play_note(ne, eigth, g_g)
     play_note(na, eigth)
     play_note(nc, eigth)
     play_note(ne, eigth)
-    play_note(nf, eigth, g_g.play(play_note, emb_length))
+    play_note(nf, eigth, g_g)
     play_note(na, eigth)
     play_note(nd, eigth)
     play_note(nf, eigth)
     play_note(ne, quarter, g_gef)
-    play_note(nc, eigth, g_g.play(play_note, emb_length))
+    play_note(nc, eigth, g_g)
     play_note(nd, eigth)
     play_note(ne, quarter, g_gef)
     play_note(ne, eigth, g_a)
     play_note(nf, eigth)
-    play_note(ne, eigth, g_g.play(play_note, emb_length))
+    play_note(ne, eigth, g_g)
     play_note(na, eigth)
     play_note(nc, eigth)
     play_note(ne, eigth)
-    play_note(nc, eigth, g_g.play(play_note, emb_length))
+    play_note(nc, eigth, g_g)
     play_note(na, eigth, g_d)
-    play_note(nd, eigth, g_g.play(play_note, emb_length))
+    play_note(nd, eigth, g_g)
     play_note(nc, eigth)
     play_note(nb, quarter, g_gbd)
-    play_note(nc, eigth, g_g.play(play_note, emb_length))
+    play_note(nc, eigth, g_g)
     play_note(nd, eigth)
     play_note(ne, quarter, g_gef)
     play_note(ne, eigth, g_a)
     play_note(nf, eigth)
-    play_note(ne, eigth, g_g.play(play_note, emb_length))
+    play_note(ne, eigth, g_g)
     play_note(na, eigth)
     play_note(nc, eigth)
     play_note(ne, eigth)
-    play_note(nf, eigth, g_g.play(play_note, emb_length))
+    play_note(nf, eigth, g_g)
     play_note(na, eigth)
     play_note(nd, eigth)
     play_note(nf, eigth)
     play_note(ne, quarter, g_gef)
-    play_note(nc, eigth, g_g.play(play_note, emb_length))
+    play_note(nc, eigth, g_g)
     play_note(ne, eigth)
-    play_note(nd, eigth, g_g.play(play_note, emb_length))
+    play_note(nd, eigth, g_g)
     play_note(nc, eigth)
-    play_note(nc, eigth, g_g.play(play_note, emb_length))
+    play_note(nc, eigth, g_g)
     play_note(nb, eigth)
-    play_note(nb, eigth, g_g.play(play_note, emb_length))
+    play_note(nb, eigth, g_g)
     play_note(nf, eigth)
-    play_note(ne, eigth, g_g.play(play_note, emb_length))
+    play_note(ne, eigth, g_g)
     play_note(nb, eigth)
     play_note(nc, quarter, g_gcd)
     play_note(na, quarter, g_e)
@@ -192,8 +160,7 @@ midiOutput.set_instrument(instrument)
 transpose(3)
 
 try:
-    while (True):
-        song_itchy_fingers(.200)
+    song_itchy_fingers(.200)
 #    play_file("itchy_fingers_stripped.bww")
 
 except (KeyboardInterrupt, SystemExit):
