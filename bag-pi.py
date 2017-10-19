@@ -53,29 +53,30 @@ def play_note(note, duration=1.000, embellishment=None):
     midiOutput.note_off(note, velocity)
     """
     played = 0
+    print "play_note"
     if embellishment is not None: #Play embellishment...
-        for note in embellishment.notes:
-            midiOutput.note_on(note, velocity)
-            print "playing note: " + str(note)
+        for emb_note in embellishment.notes:
+            midiOutput.note_on(emb_note, velocity)
+            print "playing embellishment: " + str(emb_note)
             sleep(emb_length)
-            midiOutput.note_off(note, velocity)
-        played = embellishment.length(emb_length)
+            midiOutput.note_off(emb_note, velocity)
+            played = played + emb_length
     midiOutput.note_on(note, velocity)
     print "playing note: " + str(note)
     sleep(duration - played)
     midiOutput.note_off(note, velocity) 
 
 def song_itchy_fingers(eigth=.300):
-    g_g = Embellishment([nG], False)
-    g_a = Embellishment([na], False)
-    g_d = Embellishment([nd], False)
-    g_e = Embellishment([ne], False)
-    g_gef = Embellishment([nG, ne, nf], False)    
-    g_gbd = Embellishment([nG, nb, nd], False)
-    g_gcd = Embellishment([nG, nc, nd], False)
-    g_dThrow = Embellishment([ng, nd, nc], False)
-    g_birl = Embellishment([nG, na, ng, na, ng], False)
-    g_grip = Embellishment([ng, nd, ng], False)
+    g_g = Embellishment([nG], 0)
+    g_a = Embellishment([na], 0)
+    g_d = Embellishment([nd], 0)
+    g_e = Embellishment([ne], 0)
+    g_gef = Embellishment([nG, ne, nf], 0)    
+    g_gbd = Embellishment([nG, nb, nd], 0)
+    g_gcd = Embellishment([nG, nc, nd], 0)
+    g_dThrow = Embellishment([ng, nd, nc], 0)
+    g_birl = Embellishment([nG, na, ng, na, ng], 0)
+    g_grip = Embellishment([ng, nd, ng], 0)
     
 
 
