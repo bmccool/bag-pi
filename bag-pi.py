@@ -1,7 +1,7 @@
 import pygame
 import pygame.midi
 from time import sleep
-from embellishment import * 
+from Embellishments import * 
 
 # Parameters that you can change
 instrument = 109 
@@ -39,8 +39,25 @@ def transpose(delta):
     nf = nf + delta
     nG = nG + delta
     nA = nA + delta
+    notes["g"] = ng
+    notes["a"] = na
+    notes["b"] = nb
+    notes["c"] = nc
+    notes["d"] = nd
+    notes["e"] = ne
+    notes["f"] = nf
+    notes["G"] = nG
+    notes["A"] = nA
 
-notes = [ng, na, nb, nc, nd, ne, nf, nG, nA]
+notes = {"g" : ng,  
+         "a" : na,
+         "b" : nb,
+         "c" : nc, 
+         "d" : nd, 
+         "e" : ne, 
+         "f" : nf, 
+         "G" : nG,
+         "A" : nA}
 velocity = 127
 
 
@@ -53,89 +70,75 @@ def play_note(note, duration=1.000, embellishment=None):
     midiOutput.note_off(note, velocity)
     """
     played = 0
-    print "play_note"
     if embellishment is not None: #Play embellishment...
         for emb_note in embellishment.notes:
-            midiOutput.note_on(emb_note, velocity)
+            midiOutput.note_on(notes[emb_note], velocity)
             print "playing embellishment: " + str(emb_note)
             sleep(emb_length)
-            midiOutput.note_off(emb_note, velocity)
+            midiOutput.note_off(notes[emb_note], velocity)
             played = played + emb_length
-    midiOutput.note_on(note, velocity)
+    midiOutput.note_on(notes[note], velocity)
     print "playing note: " + str(note)
     sleep(duration - played)
-    midiOutput.note_off(note, velocity) 
+    midiOutput.note_off(notes[note], velocity) 
 
 def song_itchy_fingers(eigth=.300):
-    g_g = Embellishment([nG], 0)
-    g_a = Embellishment([na], 0)
-    g_d = Embellishment([nd], 0)
-    g_e = Embellishment([ne], 0)
-    g_gef = Embellishment([nG, ne, nf], 0)    
-    g_gbd = Embellishment([nG, nb, nd], 0)
-    g_gcd = Embellishment([nG, nc, nd], 0)
-    g_dThrow = Embellishment([ng, nd, nc], 0)
-    g_birl = Embellishment([nG, na, ng, na, ng], 0)
-    g_grip = Embellishment([ng, nd, ng], 0)
-    
-
-
     quarter = eigth * 2
-    play_note(nc, eigth, g_g)
-    play_note(nd, eigth)
-    play_note(ne, quarter, g_gef)
-    play_note(ne, eigth, g_a)
-    play_note(nf, eigth)
-    play_note(ne, eigth, g_g)
-    play_note(na, eigth)
-    play_note(nc, eigth)
-    play_note(ne, eigth)
-    play_note(nf, eigth, g_g)
-    play_note(na, eigth)
-    play_note(nd, eigth)
-    play_note(nf, eigth)
-    play_note(ne, quarter, g_gef)
-    play_note(nc, eigth, g_g)
-    play_note(nd, eigth)
-    play_note(ne, quarter, g_gef)
-    play_note(ne, eigth, g_a)
-    play_note(nf, eigth)
-    play_note(ne, eigth, g_g)
-    play_note(na, eigth)
-    play_note(nc, eigth)
-    play_note(ne, eigth)
-    play_note(nc, eigth, g_g)
-    play_note(na, eigth, g_d)
-    play_note(nd, eigth, g_g)
-    play_note(nc, eigth)
-    play_note(nb, quarter, g_gbd)
-    play_note(nc, eigth, g_g)
-    play_note(nd, eigth)
-    play_note(ne, quarter, g_gef)
-    play_note(ne, eigth, g_a)
-    play_note(nf, eigth)
-    play_note(ne, eigth, g_g)
-    play_note(na, eigth)
-    play_note(nc, eigth)
-    play_note(ne, eigth)
-    play_note(nf, eigth, g_g)
-    play_note(na, eigth)
-    play_note(nd, eigth)
-    play_note(nf, eigth)
-    play_note(ne, quarter, g_gef)
-    play_note(nc, eigth, g_g)
-    play_note(ne, eigth)
-    play_note(nd, eigth, g_g)
-    play_note(nc, eigth)
-    play_note(nc, eigth, g_g)
-    play_note(nb, eigth)
-    play_note(nb, eigth, g_g)
-    play_note(nf, eigth)
-    play_note(ne, eigth, g_g)
-    play_note(nb, eigth)
-    play_note(nc, quarter, g_gcd)
-    play_note(na, quarter, g_e)
-    play_note(na, quarter, g_birl) 
+    play_note("c", eigth, g_g)
+    play_note("d", eigth)
+    play_note("e", quarter, g_gef)
+    play_note("e", eigth, g_a)
+    play_note("f", eigth)
+    play_note("e", eigth, g_g)
+    play_note("a", eigth)
+    play_note("c", eigth)
+    play_note("e", eigth)
+    play_note("f", eigth, g_g)
+    play_note("a", eigth)
+    play_note("d", eigth)
+    play_note("f", eigth)
+    play_note("e", quarter, g_gef)
+    play_note("c", eigth, g_g)
+    play_note("d", eigth)
+    play_note("e", quarter, g_gef)
+    play_note("e", eigth, g_a)
+    play_note("f", eigth)
+    play_note("e", eigth, g_g)
+    play_note("a", eigth)
+    play_note("c", eigth)
+    play_note("e", eigth)
+    play_note("c", eigth, g_g)
+    play_note("a", eigth, g_d)
+    play_note("d", eigth, g_g)
+    play_note("c", eigth)
+    play_note("b", quarter, g_gbd)
+    play_note("c", eigth, g_g)
+    play_note("d", eigth)
+    play_note("e", quarter, g_gef)
+    play_note("e", eigth, g_a)
+    play_note("f", eigth)
+    play_note("e", eigth, g_g)
+    play_note("a", eigth)
+    play_note("c", eigth)
+    play_note("e", eigth)
+    play_note("f", eigth, g_g)
+    play_note("a", eigth)
+    play_note("d", eigth)
+    play_note("f", eigth)
+    play_note("e", quarter, g_gef)
+    play_note("c", eigth, g_g)
+    play_note("e", eigth)
+    play_note("d", eigth, g_g)
+    play_note("c", eigth)
+    play_note("c", eigth, g_g)
+    play_note("b", eigth)
+    play_note("b", eigth, g_g)
+    play_note("f", eigth)
+    play_note("e", eigth, g_g)
+    play_note("b", eigth)
+    play_note("c", quarter, g_gcd)
+    play_note("a", quarter, g_e)
+    play_note("a", quarter, g_birl) 
 
 def play_file(filename):
     file = open(filename, "r")
