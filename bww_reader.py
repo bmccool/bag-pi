@@ -1,3 +1,7 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 bww_dict = {"&": "NewMeasure TrebelClef",
 	   "sharpf": "Key Signature F#",
 	   "sharpc": "Key Signature C#",
@@ -18,34 +22,35 @@ bww_dict = {"&": "NewMeasure TrebelClef",
 
 	   # Embelishments
            # - Grace Notes
-	   "gg": "Grace G",
-	   "eg": "Grace E",
+	   "gg": "Embellishment g_G",
+	   "eg": "Embellishment g_e",
+	   "dg": "Embellishment g_d", 
            # - Single Strike
-	   "strla": "Strike Low A",
-	   "strlg": "Strike Low G",
+	   "strla": "Embellishment g_a Strike Low A",
+	   "strlg": "Embellishment g_g Strike Low G",
            # - Doublings
            # - - Regular Doubling
-	   "dbc": "Doubling C",
-	   "dbe": "Doubling E",
-	   "dbhg": "Doubling High G",
-	   "dbha": "Doubling High A",
+	   "dbc": "Embellishment g_gcd Doubling C",
+	   "dbe": "Embellishment g_gef Doubling E",
+	   "dbhg": "Embellishment ? Doubling High G",
+	   "dbha": "Embellishment g_ag Doubling High A",
            # - - Half Doubling
-	   "hdbe": "Half Doubling E",
+	   "hdbe": "Embellishment g_ef Half Doubling E",
+           # - Grips
+	   "gstb": "Embellishment g_gbg ?",
            # Birls
-	   "brl": "Birl",
-	   "abr": "Birl Low A",
-	   "gbr": "Birl Low G",
-	   "tbr": "Birl High G",
-	   "thrd": "D throw",
-	   "lgstd": "lemolougghlin",
-	   "dg": "D grace note",
-	   "grp": "grip",
-	   "hdbf": "Nope",
-	   "tar": "taorloughg",
-	   "gstb": "!!!!!!1",
-	   "gstd": "!!!!!!",
-	   "tg": "!",
-	   "strhg": "!",
+	   "brl": "Embellishment g_birl Birl",
+	   "abr": "Embellishment ? Birl Low A",
+	   "gbr": "Embellishment ? Birl Low G",
+	   "tbr": "Embellishment ? Birl High G",
+	   "thrd": "Embellishment ? D throw",
+	   "lgstd": "Embellishment ? lemolougghlin",
+	   "grp": "Embellishment ? grip",
+	   "hdbf": "Embellishment ?",
+	   "tar": "Embellishment ? taorloughg",
+	   "gstd": "Embellishment ? !!!!!!",
+	   "tg": "Embellishment ?",
+	   "strhg": "Embellishment ?",
     
            # Notes
 	   "LA_4": 	"note a 4"            ,
@@ -54,36 +59,36 @@ bww_dict = {"&": "NewMeasure TrebelClef",
 	   "LAr_32": 	"note a 32 Flag_right",
 	   "LAl_8": 	"note a 8  Flag_left" ,
 	   "LAr_8": 	"note a 8  Flag_right",
-	   "B_4": 	"note B 4"            ,
-	   "Br_32": 	"note B 32 Flag_right",
-	   "Bl_16": 	"note B 16 Flag_left" ,
-	   "Bl_32": 	"note B 32 Flag_left" ,
-	   "Br_8": 	"note B 8  Flag_right",
-	   "Bl_8": 	"note B 8  Flag_left" ,
-	   "C_4": 	"note C 4"            , 
-	   "Cr_32": 	"note C 32 Flag_right",
-	   "Cl_32": 	"note C 32 Flag_left" ,
-	   "Cr_16":	"note C 16 Flag_right",
-	   "Cl_8": 	"note C 8  Flag_left" ,
-	   "Cr_8": 	"note C 8  Flag_right",
-	   "Dr_8": 	"note D 8  Flag_right",
-	   "Dr_16": 	"note D 16 Flag_right",
-	   "Dl_8": 	"note D 8  Flag_left" ,
-	   "Dl_32": 	"note D 32 Flag_left" ,
-	   "Dl_16": 	"note D 16 Flag_left" ,
-	   "D_8": 	"note D 8"            ,
-	   "El_8": 	"note E 8  Flag_left" ,
-	   "Er_16": 	"note E 16 Flag_right",
-	   "El_32": 	"note E 32 Flag_left" ,
-	   "Er_8": 	"note E 8  Flag_right",
-	   "E_4": 	"note E 4"            ,
-	   "E_8": 	"note E 8"            ,
-	   "Fr_8": 	"note F 8  Flag_right",
-	   "Fr_16": 	"note F 16 Flag_right",
-	   "Fl_32": 	"note F 32 Flag_left" ,
-	   "Fr_32": 	"note F 32 Flag_right",
-	   "Fl_16": 	"note F 16 Flag_left" ,
-	   "Fl_8":	"note F 8  Flag_left" ,
+	   "B_4": 	"note b 4"            ,
+	   "Br_32": 	"note b 32 Flag_right",
+	   "Bl_16": 	"note b 16 Flag_left" ,
+	   "Bl_32": 	"note b 32 Flag_left" ,
+	   "Br_8": 	"note b 8  Flag_right",
+	   "Bl_8": 	"note b 8  Flag_left" ,
+	   "C_4": 	"note c 4"            , 
+	   "Cr_32": 	"note c 32 Flag_right",
+	   "Cl_32": 	"note c 32 Flag_left" ,
+	   "Cr_16":	"note c 16 Flag_right",
+	   "Cl_8": 	"note c 8  Flag_left" ,
+	   "Cr_8": 	"note c 8  Flag_right",
+	   "Dr_8": 	"note d 8  Flag_right",
+	   "Dr_16": 	"note d 16 Flag_right",
+	   "Dl_8": 	"note d 8  Flag_left" ,
+	   "Dl_32": 	"note d 32 Flag_left" ,
+	   "Dl_16": 	"note d 16 Flag_left" ,
+	   "D_8": 	"note d 8"            ,
+	   "El_8": 	"note e 8  Flag_left" ,
+	   "Er_16": 	"note e 16 Flag_right",
+	   "El_32": 	"note e 32 Flag_left" ,
+	   "Er_8": 	"note e 8  Flag_right",
+	   "E_4": 	"note e 4"            ,
+	   "E_8": 	"note e 8"            ,
+	   "Fr_8": 	"note f 8  Flag_right",
+	   "Fr_16": 	"note f 16 Flag_right",
+	   "Fl_32": 	"note f 32 Flag_left" ,
+	   "Fr_32": 	"note f 32 Flag_right",
+	   "Fl_16": 	"note f 16 Flag_left" ,
+	   "Fl_8":	"note f 8  Flag_left" ,
 	   "HGl_32": 	"note G 32 Flag_left" ,
 	   "HGr_8": 	"note G 8  Flag_right",
 	   "HGr_32": 	"note G 32 Flag_right",
@@ -120,14 +125,26 @@ class BWWReader():
                 self.elements.append(part)
         bww.close()
 
-    def next():
+    def next(self):
         if self.index < len(self.elements):
             self.index = self.index + 1
-            #TODO: Is there a built in type, iterator maybe, that can keep track of this for me?
+            #TODO: Is there a built in type, iterator maybe, that can keep track of this for me?i
+            logger.debug("Next BWW element: " + str(self.elements[self.index - 1]))
             return self.elements[self.index - 1]
         else:
             self.index = 0
             return None
+
+    def interpret_next(self):
+        #TODO: Find a more elegant way to do this
+        note = None
+        note = self.next()
+        if note is not None and note in bww_dict:
+            note = bww_dict[note]
+            if note is "NewPart OpenReapeat":
+                logger.debug("REPEAT STARTS HERE: ", str(self.index))
+            logger.debug("Next interpreted element: " + str(note))
+        return note
 
     def interpret_file(self):
         for element in self.elements:
